@@ -51,16 +51,16 @@ public class BaseManager : MonoBehaviour
 
     protected virtual void OnReady()
     {
-        Debug.Log("[Status] READY");
+        Debug.Log("["+ this.GetType().Name +" Status] READY");
     }
 
     protected virtual void OnBattle()
     {
-        Debug.Log("[Status] Battle");
+        Debug.Log("["+ this.GetType().Name +" Status] Battle");
     }
 
     protected virtual void OnMaintenance()
     {
-        Debug.Log("[Status] Maintenance");
+        Debug.Log("["+ this.GetType().Name +" Status] Maintenance");
     }
 }
