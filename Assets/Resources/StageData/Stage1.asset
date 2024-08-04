@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba99dd907b4ab040b12cca0a05bfbae, type: 3}
   m_Name: Stage1
   m_EditorClassIdentifier: 
-  name: Level 1
+  monsterSpawnDatas:
+  - monster: {fileID: 3291379452298382758, guid: da711928efd8ed1459dc2fe653314851, type: 3}
+    delay: 5
+  - monster: {fileID: 3291379452298382758, guid: da711928efd8ed1459dc2fe653314851, type: 3}
+    delay: 1
+  - monster: {fileID: 3291379452298382758, guid: da711928efd8ed1459dc2fe653314851, type: 3}
+    delay: 5
