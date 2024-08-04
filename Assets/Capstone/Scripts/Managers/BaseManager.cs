@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class BaseManager : MonoBehaviour
 {
-    private void Awake()
+    protected virtual void Awake()
     {
         GameManager.Awaked += AwakedEventHendler;
     }
-    private void OnEnable() 
+    protected virtual void OnDisable()
     {
-        GameManager.Awaked -= AwakedEventHendler;        
+        GameManager.Awaked -= AwakedEventHendler;
     }
 
-    protected void AwakedEventHendler()
+    protected virtual void AwakedEventHendler()
     {
-        Debug.Log("BaseManager Awaked listen");
+        Debug.Log("[ "+ this.GetType().Name +" ] Default Awaked Event Hendler");
     }
 }

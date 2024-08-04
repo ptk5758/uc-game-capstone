@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameSystem;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour, IGameManager
@@ -16,8 +17,23 @@ public class GameManager : MonoBehaviour, IGameManager
     private void Awake()
     {   
         _characterManager.Init(this);
-
+        GameManagerInit();
         Awaked?.Invoke();
+    }
+    private void GameManagerInit()
+    {
+        // Character Spawned Event SubScription
+        CharacterSystem.SpawnedCharacter += CharacterSystem_SpawnedEventHendler;
+    }
+
+    private void CharacterSystem_SpawnedEventHendler(GameObject character)
+    {
+        Debug.Log("Spawned Object : " + character.name);
+    }
+
+    private void OnDisable()
+    {
+        CharacterSystem.SpawnedCharacter -= CharacterSystem_SpawnedEventHendler;
     }
 }
 
