@@ -9,15 +9,19 @@ public class BaseManager : MonoBehaviour
     protected IGameManager _gameManager;
     public virtual void Init(IGameManager gameManager)
     {
-        _gameManager = gameManager;        
+        _gameManager = gameManager;
+        GameManager.Awaked += AwakedEventHendler;
+        GameManager.ChangedStatus += GameManager_ChangedStatusEventHendler;
     }
     protected virtual void Awake()
     {
-        GameManager.Awaked += AwakedEventHendler;
+        
+        
     }
     protected virtual void OnDisable()
     {
         GameManager.Awaked -= AwakedEventHendler;
+        GameManager.ChangedStatus -= GameManager_ChangedStatusEventHendler;
     }
 
     protected virtual void AwakedEventHendler()
@@ -26,5 +30,37 @@ public class BaseManager : MonoBehaviour
     }
     protected IGameManager GetGameManager() {
         return _gameManager;
+    }
+
+    protected virtual void GameManager_ChangedStatusEventHendler(GameStatus status)
+    {
+        switch (status) {
+            case GameStatus.Ready :
+                OnReady();
+                return;
+            case GameStatus.Battle :
+                OnBattle();
+                return;
+            case GameStatus.Maintenance :
+                OnMaintenance();
+                return;
+            default :
+                return;
+        }
+    }
+
+    protected virtual void OnReady()
+    {
+        Debug.Log("[Status] READY");
+    }
+
+    protected virtual void OnBattle()
+    {
+        Debug.Log("[Status] Battle");
+    }
+
+    protected virtual void OnMaintenance()
+    {
+        Debug.Log("[Status] Maintenance");
     }
 }
