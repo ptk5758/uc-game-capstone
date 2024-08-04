@@ -14,9 +14,14 @@ public class GameManager : MonoBehaviour, IGameManager
 
     [SerializeField]
     private CharacterManager _characterManager;
+
+    [SerializeField]
+    private MonsterManager _monsterManager;
+
     private void Awake()
     {   
         _characterManager.Init(this);
+        _monsterManager.Init(this);
         GameManagerInit();
         Awaked?.Invoke();
     }

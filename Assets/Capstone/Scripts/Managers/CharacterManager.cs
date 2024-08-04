@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameSystem;
 
-[System.Serializable]
 public class CharacterManager : BaseManager
 {
-    [field:SerializeField]
+    #region Public Property
     public GameObject CurrentCharacter { get; private set; }
-    private IGameManager _gameManager;
+    
+    #endregion
+    
     private ICharacterSystem _characterSystem;
 
     [SerializeField]
@@ -17,12 +18,11 @@ public class CharacterManager : BaseManager
     [SerializeField]
     private GameObject spawnPrefab;
 
-    public void Init(IGameManager gameManager)
+    public override void Init(IGameManager gameManager)
     {
-        _gameManager = gameManager;
+        base.Init(gameManager);
         _characterSystem = new CharacterSystem();
     }
-    public IGameManager GameManager { get { return _gameManager; } }
     
     protected override void AwakedEventHendler() {
         SpawnCharacter();

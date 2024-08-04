@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[System.Serializable]
 public class BaseManager : MonoBehaviour
 {
+    protected IGameManager _gameManager;
+    public virtual void Init(IGameManager gameManager)
+    {
+        _gameManager = gameManager;        
+    }
     protected virtual void Awake()
     {
         GameManager.Awaked += AwakedEventHendler;
@@ -17,5 +23,8 @@ public class BaseManager : MonoBehaviour
     protected virtual void AwakedEventHendler()
     {
         Debug.Log("[ "+ this.GetType().Name +" ] Default Awaked Event Hendler");
+    }
+    protected IGameManager GetGameManager() {
+        return _gameManager;
     }
 }
