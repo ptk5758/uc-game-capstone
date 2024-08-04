@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour, IGameManager
 
     [SerializeField]
     private UIManager _uiManager;
+
+    [SerializeField]
+    private StageManager _stageManager;
 #endregion
 
     public GameStatus Status { get; private set; }
@@ -37,6 +40,7 @@ public class GameManager : MonoBehaviour, IGameManager
         _characterManager.Init(this);
         _monsterManager.Init(this);
         _uiManager.Init(this);
+        _stageManager.Init(this);
         GameManagerInit();
         Awaked?.Invoke();
         SetGameStatus(GameStatus.Ready);
