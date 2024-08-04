@@ -7,6 +7,9 @@ public class MainMenuController : MonoBehaviour
 {
     public void StartButtonHendle()
     {
+        #region TEST
+        Debug.Log("asd");
+        #endregion
         SceneManager.LoadScene("GamePlay");
     }
 
