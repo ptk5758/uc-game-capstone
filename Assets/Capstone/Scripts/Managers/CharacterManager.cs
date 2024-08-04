@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class CharacterManager : MonoBehaviour
+public class CharacterManager : BaseManager
 {
     private IGameManager _gameManager;
 
