@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BaseMonster : MonoBehaviour, IUnit, IMonster
+[RequireComponent(typeof(Collider))]
+public class BaseMonster : MonoBehaviour, IMonster
 {
     public float testSpeed = 0.1f;
     public GameObject GameObject { get { return gameObject; } }
 
     protected IUnit target;
+    protected IUnit attackTarget;
     public void SetTarget(IUnit target)
     {
         this.target = target;
@@ -16,16 +18,36 @@ public class BaseMonster : MonoBehaviour, IUnit, IMonster
 
     protected virtual void FixedUpdate()
     {
-        Move();   
+        if (attackTarget != null) {
+            Attacking();
+            return;
+        }
+        Moving();
     }
-    private void Move()
+    protected virtual void Attacking() {
+        Debug.Log(attackTarget.GameObject.name + " 공격중..");
+    }
+    private void Moving()
     {   
         Vector3 direction = (target.GameObject.transform.position - transform.position).normalized;
         transform.position += direction * testSpeed * Time.deltaTime;
     }
 
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (target.GameObject == collider.gameObject) {
+            IPlayer p = collider.gameObject.GetComponent<IPlayer>();
+            attackTarget = p;
+        }
+    }
+    private void OnTriggerExit(Collider collider) {
+        if (attackTarget != null && collider.gameObject == attackTarget.GameObject) {
+            attackTarget = null;
+        }
+    }
+
 }
-public interface IMonster
+public interface IMonster : IUnit
 {
     public void SetTarget(IUnit target);
 }

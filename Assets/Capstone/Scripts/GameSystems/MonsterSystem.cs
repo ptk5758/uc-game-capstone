@@ -17,7 +17,7 @@ namespace GameSystem
         {
             GameObject spawned = GameObject.Instantiate(monster);
             Monster mob = spawned.AddComponent<Monster>();
-            SetTarget(mob,(Player) _gameManager.Player);
+            SetTarget(mob, _gameManager.Player);
             spawned.transform.position = location.position;
             SpawnedMonster?.Invoke(spawned);
         }
