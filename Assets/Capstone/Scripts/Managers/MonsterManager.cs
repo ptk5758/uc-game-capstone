@@ -54,7 +54,6 @@ public class MonsterManager : BaseManager
 
     private void StageSystem_ChangedStageEventHendler(StageData data)
     {
-        Debug.Log(1);
         _stageData = data;
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasePlayer : MonoBehaviour, IPlayer
+public class BasePlayer : MonoBehaviour, IPlayer, IUnit
 {
     [field:SerializeField]
     public int AttackDamage { get; private set; }
@@ -10,6 +10,7 @@ public class BasePlayer : MonoBehaviour, IPlayer
     {
         AttackDamage = data.AttackDamage;
     }
+    public GameObject GameObject { get { return gameObject; } }
 
 }
 

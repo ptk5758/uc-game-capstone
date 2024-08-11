@@ -69,11 +69,14 @@ public class GameManager : MonoBehaviour, IGameManager
         
     }
 #endregion
+
+    public IPlayer Player { get {return _playerManager.Player;} }
 }
 
 public interface IGameManager
 {
     public void SetGameStatus(GameStatus nextStatus);
+    public IPlayer Player { get; }
 }
 
 public interface IAwakedEventListener

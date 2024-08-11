@@ -16,12 +16,19 @@ namespace GameSystem
         public void SpawnMonster(GameObject monster, Transform location)
         {
             GameObject spawned = GameObject.Instantiate(monster);
+            Monster mob = spawned.AddComponent<Monster>();
+            SetTarget(mob,(Player) _gameManager.Player);
             spawned.transform.position = location.position;
             SpawnedMonster?.Invoke(spawned);
+        }
+        public void SetTarget(IMonster monster, IUnit unit)
+        {
+            monster.SetTarget(unit);
         }
     }
     public interface IMonsterSystem
     {
         public void SpawnMonster(GameObject monster, Transform location);
+        public void SetTarget(IMonster monster, IUnit unit);
     }
 }
