@@ -19,8 +19,6 @@ public class GameManager : MonoBehaviour, IGameManager
     /// </summary>
     public static event Action Awaked;
 #region 각종 메니저 Property
-    [SerializeField]
-    private CharacterManager _characterManager;
 
     [SerializeField]
     private MonsterManager _monsterManager;
@@ -30,6 +28,9 @@ public class GameManager : MonoBehaviour, IGameManager
 
     [SerializeField]
     private StageManager _stageManager;
+
+    [SerializeField]
+    private PlayerManager _playerManager;
 #endregion
 
     public GameStatus Status { get; private set; }
@@ -37,10 +38,10 @@ public class GameManager : MonoBehaviour, IGameManager
 
     private void Awake()
     {   
-        _characterManager.Init(this);
         _monsterManager.Init(this);
         _uiManager.Init(this);
         _stageManager.Init(this);
+        _playerManager.Init(this);
         GameManagerInit();
         Awaked?.Invoke();
         SetGameStatus(GameStatus.Ready);
@@ -48,7 +49,6 @@ public class GameManager : MonoBehaviour, IGameManager
     private void GameManagerInit()
     {
         // Character Spawned Event SubScription
-        CharacterSystem.SpawnedCharacter += CharacterSystem_SpawnedEventHendler;
         SetGameStatus(GameStatus.Initialization);
     }
     public void SetGameStatus(GameStatus nextStatus)
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour, IGameManager
 #region OnDisable
     private void OnDisable()
     {
-        CharacterSystem.SpawnedCharacter -= CharacterSystem_SpawnedEventHendler;
+        
     }
 #endregion
 }
@@ -74,4 +74,9 @@ public class GameManager : MonoBehaviour, IGameManager
 public interface IGameManager
 {
     public void SetGameStatus(GameStatus nextStatus);
+}
+
+public interface IAwakedEventListener
+{
+
 }
