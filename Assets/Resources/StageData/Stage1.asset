@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Stage1
   m_EditorClassIdentifier: 
   monsterSpawnDatas:
-  - monster: {fileID: 1658350451460522680, guid: 6de368696dff7064ab51086cf078342e, type: 3}
+  - monster: {fileID: 11400000, guid: b201990647308c942aa6abc56781a62f, type: 2}
     delay: 5
-  - monster: {fileID: 1658350451460522680, guid: 6de368696dff7064ab51086cf078342e, type: 3}
+  - monster: {fileID: 11400000, guid: b201990647308c942aa6abc56781a62f, type: 2}
     delay: 1
-  - monster: {fileID: 1658350451460522680, guid: 6de368696dff7064ab51086cf078342e, type: 3}
+  - monster: {fileID: 11400000, guid: b201990647308c942aa6abc56781a62f, type: 2}
     delay: 5

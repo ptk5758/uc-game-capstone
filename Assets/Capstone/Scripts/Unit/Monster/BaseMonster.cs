@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class BaseMonster : MonoBehaviour, IMonster
 {
-    public float testSpeed = 0.1f;
+    public float Speed { get; set; }
     public GameObject GameObject { get { return gameObject; } }
 
     protected IUnit target;
@@ -14,6 +14,10 @@ public class BaseMonster : MonoBehaviour, IMonster
     public void SetTarget(IUnit target)
     {
         this.target = target;
+    }
+    public void SetData(MonsterData data)
+    {
+        Speed = data.speed;
     }
 
     protected virtual void FixedUpdate()
@@ -30,7 +34,7 @@ public class BaseMonster : MonoBehaviour, IMonster
     private void Moving()
     {   
         Vector3 direction = (target.GameObject.transform.position - transform.position).normalized;
-        transform.position += direction * testSpeed * Time.deltaTime;
+        transform.position += direction * Speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider collider)

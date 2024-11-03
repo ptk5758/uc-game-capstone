@@ -13,11 +13,12 @@ namespace GameSystem
         {
             _gameManager = gameManager;
         }
-        public void SpawnMonster(GameObject monster, Transform location)
+        public void SpawnMonster(MonsterSpawnData data, Transform location)
         {
-            GameObject spawned = GameObject.Instantiate(monster);
+            GameObject spawned = GameObject.Instantiate(data.monster.prefab);
             Monster mob = spawned.AddComponent<Monster>();
             SetTarget(mob, PlayerManager.Player);
+            mob.SetData(data.monster);
             spawned.transform.position = location.position;
             SpawnedMonster?.Invoke(spawned);
         }
@@ -28,7 +29,7 @@ namespace GameSystem
     }
     public interface IMonsterSystem
     {
-        public void SpawnMonster(GameObject monster, Transform location);
+        public void SpawnMonster(MonsterSpawnData data, Transform location);
         public void SetTarget(IMonster monster, IUnit unit);
     }
 }

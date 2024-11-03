@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MonsterManager : BaseManager
 {
-    public Transform[] spawnPoints;
+    private Transform[] spawnPoints;
 
     private StageData _stageData;
     private IMonsterSystem _monsterSystem;
@@ -36,7 +36,7 @@ public class MonsterManager : BaseManager
     {
         while (spawnStack.Count > 0) {
             MonsterSpawnData spawnData = spawnStack.Pop();
-            _monsterSystem.SpawnMonster(spawnData.monster, GetRandomSpawnPoint());
+            _monsterSystem.SpawnMonster(spawnData, GetRandomSpawnPoint());
             yield return new WaitForSeconds(spawnData.delay);                        
         }
         yield break;

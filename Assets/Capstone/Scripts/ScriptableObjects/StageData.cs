@@ -11,6 +11,6 @@ public class StageData : ScriptableObject
 [System.Serializable]
 public struct MonsterSpawnData
 {
-    public GameObject monster;
+    public MonsterData monster;
     public float delay;
 }
