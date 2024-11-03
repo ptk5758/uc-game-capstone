@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "uc-game-capstone.sln"
+    "dotnet.defaultSolution": "uc-capstone.sln"
 }
