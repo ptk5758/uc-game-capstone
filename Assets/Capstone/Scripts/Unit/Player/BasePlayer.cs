@@ -23,6 +23,9 @@ public class BasePlayer : MonoBehaviour, IPlayer
     {
         HP -= damage;
         Player.hited?.Invoke(HP);
+        if (HP <= 0) {
+            GameManager.Lose();
+        }
     }
 }
 

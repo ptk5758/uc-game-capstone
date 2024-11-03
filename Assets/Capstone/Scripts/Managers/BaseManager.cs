@@ -26,7 +26,7 @@ public class BaseManager : MonoBehaviour
 
     protected virtual void AwakedEventHendler()
     {
-        Debug.Log("[ "+ this.GetType().Name +" ] Default Awaked Event Hendler");
+        // Debug.Log("[ "+ this.GetType().Name +" ] Default Awaked Event Hendler");
     }
     protected IGameManager GetGameManager() {
         return _gameManager;

@@ -19,15 +19,21 @@ public class UIManager : BaseManager
     private void OnEnable()
     {
         Player.hited += OnPlayerHited;
+        GameManager.losed += OnLosed;
     }
     protected override void OnDisable()
     {
         base.OnDisable();
         Player.hited -= OnPlayerHited;
+        GameManager.losed -= OnLosed;
     }
     private void OnPlayerHited(int hp) 
     {
         playerHPText.text = "HP : " + hp;
+    }
+    private void OnLosed()
+    {
+        Debug.Log("대충 게임 패배 POPUP");
     }
 
     public override void Init(IGameManager gameManager)

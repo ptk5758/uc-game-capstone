@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using GameSystem;
 using UnityEngine;
+using UnityEngine.Events;
 public enum GameStatus
 {
     Initialization, // 시스템 초기화
@@ -13,7 +14,9 @@ public enum GameStatus
 
 public class GameManager : MonoBehaviour, IGameManager
 {   
-
+    public static event Action paused;
+    public static event Action resumed;
+    public static event Action losed;
     /// <summary>
     /// Game Manager의 Awake가 완료되고 마지막 줄에서 호출
     /// </summary>
@@ -55,30 +58,29 @@ public class GameManager : MonoBehaviour, IGameManager
         Status = nextStatus;
         ChangedStatus?.Invoke(Status);
     }
-#region 케릭터 스폰 이벤트 헨들러
-    private void CharacterSystem_SpawnedEventHendler(GameObject character)
-    {
-        Debug.Log("Spawned Object : " + character.name);
-    }
-#endregion
 
-#region OnDisable
-    private void OnDisable()
+    public static void Lose()
     {
-        
+        Pause(true);
     }
-#endregion
-
-    // public IPlayer Player { get {return _playerManager.Player;} }
+    public static void Pause(bool isLose)
+    {
+        Time.timeScale = 0;
+        if (isLose) {
+            losed?.Invoke();
+        } else {
+            paused?.Invoke();
+        }
+    }
+    public static void Resume()
+    {
+        Time.timeScale = 1;
+        resumed?.Invoke();
+    }
 }
 
 public interface IGameManager
 {
     public void SetGameStatus(GameStatus nextStatus);
     // public IPlayer Player { get; }
-}
-
-public interface IAwakedEventListener
-{
-
 }
