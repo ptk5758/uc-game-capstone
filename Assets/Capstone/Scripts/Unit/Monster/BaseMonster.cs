@@ -7,8 +7,9 @@ using UnityEngine;
 public class BaseMonster : MonoBehaviour, IMonster
 {
     public float Speed { get; set; }
+    public float Delay { get; set; }
+    private float attackTimer = 0;
     public GameObject GameObject { get { return gameObject; } }
-
     protected IUnit target;
     protected IUnit attackTarget;
     public void SetTarget(IUnit target)
@@ -18,6 +19,7 @@ public class BaseMonster : MonoBehaviour, IMonster
     public void SetData(MonsterData data)
     {
         Speed = data.speed;
+        Delay = data.delay;
     }
 
     protected virtual void FixedUpdate()
@@ -29,7 +31,13 @@ public class BaseMonster : MonoBehaviour, IMonster
         Moving();
     }
     protected virtual void Attacking() {
-        Debug.Log(attackTarget.GameObject.name + " 공격중..");
+        if (attackTimer < Delay) {
+            attackTimer += Time.deltaTime;
+        } else {
+            Debug.Log("공격!");
+            attackTimer = 0;
+        }
+
     }
     private void Moving()
     {   
