@@ -1086,9 +1086,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f0cbbc7e61d2864ab39992bd06c69d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 3291379452298382758, guid: da711928efd8ed1459dc2fe653314851, type: 3}
-  spawnLocation: {fileID: 2107055087}
-  playerData: {fileID: 11400000, guid: a2377e0bb3cb0424385b1b546411a2a3, type: 2}
+  spawnPosition: {fileID: 324033291}
+  data: {fileID: 11400000, guid: c213e18930620e349b68b01731eb43a0, type: 2}
 --- !u!4 &1659891443
 Transform:
   m_ObjectHideFlags: 0
@@ -1233,6 +1232,111 @@ MonoBehaviour:
   _uiManager: {fileID: 797243826}
   _stageManager: {fileID: 343361567}
   _playerManager: {fileID: 1659891442}
+--- !u!1 &2089983286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2089983288}
+  - component: {fileID: 2089983287}
+  m_Layer: 0
+  m_Name: RainbowHierarchyRuleset
+  m_TagString: EditorOnly
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2089983287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089983286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1774853514, guid: ebe26e22332665d4c8332b2a624e5e8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rules:
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 2020578979}
+    Ordinal: 0
+    Priority: 0
+    IconType: 103000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 8000
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 1659891441}
+    Ordinal: 1
+    Priority: 0
+    IconType: 7000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 8000
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 343361565}
+    Ordinal: 2
+    Priority: 0
+    IconType: 19000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 8000
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 1891058411}
+    Ordinal: 3
+    Priority: 0
+    IconType: 1000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 8000
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 797243825}
+    Ordinal: 4
+    Priority: 0
+    IconType: 330000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 8000
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+--- !u!4 &2089983288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089983286}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2107055086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,12 +1508,13 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 507690274}
-  - {fileID: 2020578980}
   - {fileID: 324033291}
-  - {fileID: 1891058413}
   - {fileID: 2111418062}
-  - {fileID: 343361566}
-  - {fileID: 797243827}
-  - {fileID: 1659891443}
   - {fileID: 1428027299}
   - {fileID: 2107055087}
+  - {fileID: 2089983288}
+  - {fileID: 2020578980}
+  - {fileID: 1659891443}
+  - {fileID: 343361566}
+  - {fileID: 1891058413}
+  - {fileID: 797243827}

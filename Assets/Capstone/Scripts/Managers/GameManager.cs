@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour, IGameManager
         _monsterManager.Init(this);
         _uiManager.Init(this);
         _stageManager.Init(this);
-        _playerManager.Init(this);
         GameManagerInit();
         Awaked?.Invoke();
         SetGameStatus(GameStatus.Ready);
@@ -70,13 +69,13 @@ public class GameManager : MonoBehaviour, IGameManager
     }
 #endregion
 
-    public IPlayer Player { get {return _playerManager.Player;} }
+    // public IPlayer Player { get {return _playerManager.Player;} }
 }
 
 public interface IGameManager
 {
     public void SetGameStatus(GameStatus nextStatus);
-    public IPlayer Player { get; }
+    // public IPlayer Player { get; }
 }
 
 public interface IAwakedEventListener

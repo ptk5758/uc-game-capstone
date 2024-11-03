@@ -1,43 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using GameSystem;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
-public class PlayerManager : BaseManager, IAwakedEventListener
+public class PlayerManager : MonoBehaviour
 {
-    public IPlayer Player { get; private set; }
-    [SerializeField]
-    private GameObject playerPrefab;
+    public static Player Player { get; set; }
 
     [SerializeField]
-    private Transform spawnLocation;
-
+    private Transform spawnPosition;
     [SerializeField]
-    private PlayerData playerData;
-
-    private PlayerSystem _playerSystem;
-
-    public override void Init(IGameManager gameManager)
+    private PlayerData data;
+    private void OnEnable() 
     {
-        base.Init(gameManager);
-        _playerSystem = new PlayerSystem(_gameManager);
+        SpawnPlayer();
     }
-
-    protected override void AwakedEventHendler()
+    private void SpawnPlayer()
     {
-        OnAwaked();
-    }
-
-    private void OnAwaked()
-    {
-        Player = CreatePlayer();
-    }
-    private IPlayer CreatePlayer()
-    {
-        GameObject created = Instantiate(playerPrefab);
-        Player p = created.AddComponent<Player>();
-        p.SetPlayerData(playerData);
-        created.transform.position = spawnLocation.position;
-        return p;
+        GameObject created = Instantiate(data.prefab);
+        created.transform.position = spawnPosition.position;
+        Player = created.AddComponent<Player>();
+        Player.SetPlayerData(data);        
     }
 }
