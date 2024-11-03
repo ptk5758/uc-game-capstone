@@ -14,6 +14,22 @@ public class UIManager : BaseManager
 
     private UISystem _UISystem;
 
+    [SerializeField]
+    private TMP_Text playerHPText;
+    private void OnEnable()
+    {
+        Player.hited += OnPlayerHited;
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Player.hited -= OnPlayerHited;
+    }
+    private void OnPlayerHited(int hp) 
+    {
+        playerHPText.text = "HP : " + hp;
+    }
+
     public override void Init(IGameManager gameManager)
     {
         base.Init(gameManager);

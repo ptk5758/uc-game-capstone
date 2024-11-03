@@ -6,5 +6,6 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     public GameObject prefab;
-    public int AttackDamage;
+    public int attackDamage;
+    public int hp;
 }

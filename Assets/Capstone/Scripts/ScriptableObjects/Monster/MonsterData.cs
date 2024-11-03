@@ -6,4 +6,5 @@ public class MonsterData : ScriptableObject
     public GameObject prefab;
     public float speed;
     public float delay;
+    public int damage;
 }

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Debug_Player1
   m_EditorClassIdentifier: 
   prefab: {fileID: 3291379452298382758, guid: da711928efd8ed1459dc2fe653314851, type: 3}
-  AttackDamage: 10
+  attackDamage: 1
+  hp: 10

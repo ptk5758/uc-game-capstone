@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class BaseMonster : MonoBehaviour, IMonster
 {
+    public int Damage { get; set; }
     public float Speed { get; set; }
     public float Delay { get; set; }
     private float attackTimer = 0;
@@ -20,6 +21,7 @@ public class BaseMonster : MonoBehaviour, IMonster
     {
         Speed = data.speed;
         Delay = data.delay;
+        Damage = data.damage;
     }
 
     protected virtual void FixedUpdate()
@@ -34,10 +36,14 @@ public class BaseMonster : MonoBehaviour, IMonster
         if (attackTimer < Delay) {
             attackTimer += Time.deltaTime;
         } else {
-            Debug.Log("공격!");
+            AttackPlayer();
             attackTimer = 0;
         }
 
+    }
+    private void AttackPlayer()
+    {
+        PlayerManager.Player.Hit(Damage);
     }
     private void Moving()
     {   
