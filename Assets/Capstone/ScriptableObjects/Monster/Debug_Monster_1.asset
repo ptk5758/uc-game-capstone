@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Debug_Monster_1
   m_EditorClassIdentifier: 
   prefab: {fileID: 8934308984284827370, guid: 8e55f825d37fde64588c0420fd8e12e1, type: 3}
-  speed: 0.5
+  speed: 4
   delay: 3
   damage: 1
   hp: 5

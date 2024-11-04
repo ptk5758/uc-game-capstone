@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class BaseMonster : MonoBehaviour, IMonster
+public abstract class BaseMonster : MonoBehaviour, IMonster
 {
     public int Damage { get; set; }
     public float Speed { get; set; }
@@ -53,18 +53,7 @@ public class BaseMonster : MonoBehaviour, IMonster
         transform.position += direction * Speed * Time.deltaTime;
     }
 
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (target.GameObject == collider.gameObject) {
-            IPlayer p = collider.gameObject.GetComponent<IPlayer>();
-            attackTarget = p;
-        }
-    }
-    private void OnTriggerExit(Collider collider) {
-        if (attackTarget != null && collider.gameObject == attackTarget.GameObject) {
-            attackTarget = null;
-        }
-    }
+    
 
     public void Hit(float damage)
     {
@@ -72,11 +61,7 @@ public class BaseMonster : MonoBehaviour, IMonster
         // Debug.Log("남은 HP " + HP);
         if (HP <= 0) Die();
     }
-    private void Die()
-    {
-        MonsterManager.TriggerMonsterDied((Monster) this);
-        gameObject.SetActive(false);
-    }
+    protected abstract void Die();
 }
 public interface IMonster : IUnit
 {
