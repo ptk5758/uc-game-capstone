@@ -903,6 +903,7 @@ GameObject:
   - component: {fileID: 1514345783227387901}
   - component: {fileID: -3763890838804337644}
   - component: {fileID: 6125063687479175134}
+  - component: {fileID: -9145098443454440020}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -974,6 +975,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.5691803, z: 0.61602914}
   m_Center: {x: 0, y: 0.7823132, z: -0.0067759156}
+--- !u!114 &-9145098443454440020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291379452298382758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57513c8090a7cde44b9eaaa4f07426f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <AttackDamage>k__BackingField: 10
+  <HP>k__BackingField: 10
+  animator: {fileID: 9041792984612878076}
 --- !u!1 &3304023255540074774
 GameObject:
   m_ObjectHideFlags: 0

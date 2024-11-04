@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour
     {
         GameObject created = Instantiate(data.prefab);
         created.transform.position = spawnPosition.position;
-        Player = created.AddComponent<Player>();
-        Player.SetPlayerData(data);        
+        Player = created.GetComponent<Player>();
+        Player.SetPlayerData(data);
     }
 }
