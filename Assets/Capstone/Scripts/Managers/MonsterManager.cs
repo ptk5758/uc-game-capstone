@@ -6,6 +6,11 @@ using UnityEngine;
 
 public class MonsterManager : BaseManager
 {
+    public static event System.Action<Monster> MonsterDied;
+    public static void TriggerMonsterDied(Monster monster)
+    {
+        MonsterDied?.Invoke(monster);
+    }
     private Transform[] spawnPoints;
 
     private StageData _stageData;

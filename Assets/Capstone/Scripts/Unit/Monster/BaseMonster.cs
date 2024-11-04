@@ -10,6 +10,7 @@ public class BaseMonster : MonoBehaviour, IMonster
     public float Speed { get; set; }
     public float Delay { get; set; }
     private float attackTimer = 0;
+    public float HP { get; set; }
     public GameObject GameObject { get { return gameObject; } }
     protected IUnit target;
     protected IUnit attackTarget;
@@ -22,6 +23,7 @@ public class BaseMonster : MonoBehaviour, IMonster
         Speed = data.speed;
         Delay = data.delay;
         Damage = data.damage;
+        HP = data.hp;
     }
 
     protected virtual void FixedUpdate()
@@ -64,6 +66,17 @@ public class BaseMonster : MonoBehaviour, IMonster
         }
     }
 
+    public void Hit(float damage)
+    {
+        HP -= damage;
+        // Debug.Log("남은 HP " + HP);
+        if (HP <= 0) Die();
+    }
+    private void Die()
+    {
+        MonsterManager.TriggerMonsterDied((Monster) this);
+        gameObject.SetActive(false);
+    }
 }
 public interface IMonster : IUnit
 {
