@@ -7,7 +7,7 @@ namespace GameSystem
 {
     public class MonsterSystem : IMonsterSystem
     {
-        public static event Action<GameObject> SpawnedMonster;
+        public static event Action<Monster> SpawnedMonster;
         private IGameManager _gameManager;
         public MonsterSystem(IGameManager gameManager)
         {
@@ -20,7 +20,7 @@ namespace GameSystem
             SetTarget(mob, PlayerManager.Player);
             mob.SetData(data.monster);
             spawned.transform.position = location.position;
-            SpawnedMonster?.Invoke(spawned);
+            SpawnedMonster?.Invoke(mob);
         }
         public void SetTarget(IMonster monster, IUnit unit)
         {

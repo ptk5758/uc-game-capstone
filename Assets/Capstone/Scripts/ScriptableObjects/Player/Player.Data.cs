@@ -8,4 +8,5 @@ public class PlayerData : ScriptableObject
     public GameObject prefab;
     public int attackDamage;
     public int hp;
+    public int attackDelay;
 }

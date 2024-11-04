@@ -7,18 +7,20 @@ public class Player : BasePlayer
 {
     public static Action<int> hited;
     public Animator animator;
-
-    private void OnEnable()
+    private void Update()
     {
-        GameManager.ChangedStatus += OnGameStatusChanged;
+        if (target == null) {
+            if (monsters.Count > 0) {
+                SetTarget(monsters.Dequeue());
+            }
+        }
     }
-
-    private void OnDisable()
+    private void SetTarget(Monster monster)
     {
-        GameManager.ChangedStatus -= OnGameStatusChanged;
+        target = monster;
+        animator.SetBool("IsAttack", true);
     }
-
-    private void OnGameStatusChanged(GameStatus status)
+    protected override void OnGameStatusChanged(GameStatus status)
     {
         animator.SetBool("IsBattle", status == GameStatus.Battle);
     }
