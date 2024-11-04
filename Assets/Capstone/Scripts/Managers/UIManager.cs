@@ -56,6 +56,14 @@ public class UIManager : BaseManager
             Debug.Log("전투중 입니다...");
         });
     }
+    protected override void OnMaintenance()
+    {
+        actionButtonText.text = "Maintenance..";
+        actionButton.onClick.RemoveAllListeners();
+        actionButton.onClick.AddListener(()=>{
+            // Debug.Log("전투중 입니다...");
+        });
+    }
 
     private void BattleActionHendler()
     {

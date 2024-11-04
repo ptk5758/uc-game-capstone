@@ -7,6 +7,8 @@ using UnityEngine;
 public class MonsterManager : BaseManager
 {
     public static event System.Action<Monster> MonsterDied;
+    public static event System.Action<Monster> MonsterSpawned;
+    public static HashSet<Monster> alive = new HashSet<Monster>();
     public static void TriggerMonsterDied(Monster monster)
     {
         MonsterDied?.Invoke(monster);
@@ -14,7 +16,6 @@ public class MonsterManager : BaseManager
     private Transform[] spawnPoints;
 
     private StageData _stageData;
-    private IMonsterSystem _monsterSystem;
 
     private Stack<MonsterSpawnData> spawnStack;
 
@@ -23,11 +24,26 @@ public class MonsterManager : BaseManager
         base.Init(gameManager);
         MonsterManagerInit();
     }
+    
+    private void MonsterManagerInit() 
+    {
+        spawnStack = new Stack<MonsterSpawnData>();
+        // GetComponentsInChildren 사용하면 자신의 transform도 포함하기에 1번째 index 부터 가져옴
+        // [1..] => 1 index 부터 나머지 싹다
+        spawnPoints = gameObject.transform.GetComponentsInChildren<Transform>()[1..];
+    }
+
+    private void OnEnable()
+    {
+        MonsterDied += OnMonsterDied;
+        StageSystem.ChangedStage += StageSystem_ChangedStageEventHendler;
+    }
 
     protected override void OnDisable()
     {
         base.OnDisable();
         StageSystem.ChangedStage -= StageSystem_ChangedStageEventHendler;
+        MonsterDied -= OnMonsterDied;
     }
     protected override void OnBattle()
     {
@@ -41,20 +57,29 @@ public class MonsterManager : BaseManager
     {
         while (spawnStack.Count > 0) {
             MonsterSpawnData spawnData = spawnStack.Pop();
-            _monsterSystem.SpawnMonster(spawnData, GetRandomSpawnPoint());
+            SpawnMonster(spawnData, GetRandomSpawnPoint());
             yield return new WaitForSeconds(spawnData.delay);                        
         }
         yield break;
     }
-
-    private void MonsterManagerInit() 
+    public void SpawnMonster(MonsterSpawnData data, Transform location)
     {
-        _monsterSystem = new MonsterSystem(GetGameManager());
-        spawnStack = new Stack<MonsterSpawnData>();
-        StageSystem.ChangedStage += StageSystem_ChangedStageEventHendler;
-        // GetComponentsInChildren 사용하면 자신의 transform도 포함하기에 1번째 index 부터 가져옴
-        // [1..] => 1 index 부터 나머지 싹다
-        spawnPoints = gameObject.transform.GetComponentsInChildren<Transform>()[1..];
+        GameObject spawned = GameObject.Instantiate(data.monster.prefab);
+        Monster mob = spawned.GetComponent<Monster>();
+        mob.SetData(data.monster);
+        mob.SetTarget(PlayerManager.Player);
+        alive.Add(mob);
+        spawned.transform.position = location.position;
+        MonsterSpawned?.Invoke(mob);
+    }
+
+    private void OnMonsterDied(Monster monster)
+    {
+        alive.Remove(monster);
+        if (spawnStack.Count == 0 && alive.Count == 0) 
+        {
+            _gameManager.SetGameStatus(GameStatus.Maintenance);
+        }
     }
 
     private void StageSystem_ChangedStageEventHendler(StageData data)

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class StageManager : BaseManager
 {
+    public static int stageIndex = 0;
     [SerializeField]
     private StageData[] stageDatas;
 
@@ -16,6 +17,6 @@ public class StageManager : BaseManager
     }
     protected override void OnReady()
     {
-        _stageSystem.SetStageData(stageDatas[_stageSystem.Stage]);
+        _stageSystem.SetStageData(stageDatas[stageIndex++]);
     }
 }

@@ -37,21 +37,20 @@ public abstract class BasePlayer : MonoBehaviour, IPlayer
     private void OnEnable()
     {
         GameManager.ChangedStatus += OnGameStatusChanged;
-        GameSystem.MonsterSystem.SpawnedMonster += OnMonsterSpawned;
+        MonsterManager.MonsterSpawned += OnMonsterSpawned;
         MonsterManager.MonsterDied += OnMonsterDied;
     }
 
     private void OnDisable()
     {
         GameManager.ChangedStatus -= OnGameStatusChanged;
-        GameSystem.MonsterSystem.SpawnedMonster -= OnMonsterSpawned;
+        MonsterManager.MonsterSpawned -= OnMonsterSpawned;
         MonsterManager.MonsterDied -= OnMonsterDied;
     }
     protected abstract void OnGameStatusChanged(GameStatus status);
     protected abstract void OnMonsterDied(Monster monster);
     private void OnMonsterSpawned(Monster monster)
     {
-        // Debug.Log("[Player] : Listen Monster -> " + monster.gameObject.name);
         monsters.Enqueue(monster);
     }
 }
