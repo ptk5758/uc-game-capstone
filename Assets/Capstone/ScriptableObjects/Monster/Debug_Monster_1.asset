@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab62b677b00ca14984e7ecf0a7c3c8e, type: 3}
   m_Name: Debug_Monster_1
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1658350451460522680, guid: 6de368696dff7064ab51086cf078342e, type: 3}
+  prefab: {fileID: 8934308984284827370, guid: 8e55f825d37fde64588c0420fd8e12e1, type: 3}
   speed: 0.5
   delay: 3
   damage: 1

@@ -16,7 +16,7 @@ namespace GameSystem
         public void SpawnMonster(MonsterSpawnData data, Transform location)
         {
             GameObject spawned = GameObject.Instantiate(data.monster.prefab);
-            Monster mob = spawned.AddComponent<Monster>();
+            Monster mob = spawned.GetComponent<Monster>();
             SetTarget(mob, PlayerManager.Player);
             mob.SetData(data.monster);
             spawned.transform.position = location.position;
