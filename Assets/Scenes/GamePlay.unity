@@ -1088,8 +1088,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1867bd4d3d697a45bbdee8007c43799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  board: {fileID: 1011766220}
+  display: {fileID: 1011766220}
   aletText: {fileID: 1664881271}
+  displayDuration: 3
 --- !u!1 &1428027296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,6 +1788,18 @@ MonoBehaviour:
     Ordinal: 4
     Priority: 0
     IconType: 330000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 8000
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 1407336902}
+    Ordinal: 5
+    Priority: 0
+    IconType: 103000
     IconTexture: {fileID: 0}
     IsIconRecursive: 0
     BackgroundType: 8000
