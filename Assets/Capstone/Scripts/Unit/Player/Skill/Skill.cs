@@ -15,12 +15,15 @@ public abstract class Skill
     }
     public void Cast()
     {
-        if (!isSkillReady) 
+        if (!isSkillReady) {
+            Debug.Log("쿨타임 입니다.");
             return;
+        }
+            
         Activate();
         TriggerSkillCasted(this);
     }
-    protected IEnumerator SkillCollTimeCoroutine()
+    public IEnumerator SkillCollTimeCoroutine()
     {
         isSkillReady = false;
         yield return new WaitForSeconds(coolTime);

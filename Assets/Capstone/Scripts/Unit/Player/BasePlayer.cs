@@ -39,6 +39,7 @@ public abstract class BasePlayer : MonoBehaviour, IPlayer
         GameManager.ChangedStatus += OnGameStatusChanged;
         MonsterManager.MonsterSpawned += OnMonsterSpawned;
         MonsterManager.MonsterDied += OnMonsterDied;
+        Skill.SkillCasted += OnSkillCasted;
     }
 
     private void OnDisable()
@@ -46,9 +47,14 @@ public abstract class BasePlayer : MonoBehaviour, IPlayer
         GameManager.ChangedStatus -= OnGameStatusChanged;
         MonsterManager.MonsterSpawned -= OnMonsterSpawned;
         MonsterManager.MonsterDied -= OnMonsterDied;
+        Skill.SkillCasted -= OnSkillCasted;
     }
     protected abstract void OnGameStatusChanged(GameStatus status);
     protected abstract void OnMonsterDied(Monster monster);
+    private void OnSkillCasted(Skill skill)
+    {
+        StartCoroutine(skill.SkillCollTimeCoroutine());
+    }
     private void OnMonsterSpawned(Monster monster)
     {
         monsters.Enqueue(monster);

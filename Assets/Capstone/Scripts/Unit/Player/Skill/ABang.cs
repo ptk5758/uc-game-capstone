@@ -7,7 +7,9 @@ using UnityEngine;
 */
 public class ABang : Skill
 {
-    public ABang(Player p) : base(p) {}
+    public ABang(Player p) : base(p) {
+        coolTime = 5f;
+    }
     protected override void Activate()
     {
         Debug.Log("아방 스트랏슈");
