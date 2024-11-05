@@ -17,7 +17,7 @@ public abstract class Skill
     {
         if (!isSkillReady) 
             return;
-        Action();
+        Activate();
         TriggerSkillCasted(this);
     }
     protected IEnumerator SkillCollTimeCoroutine()
@@ -26,7 +26,7 @@ public abstract class Skill
         yield return new WaitForSeconds(coolTime);
         isSkillReady = true;
     }
-    public abstract void Action();
+    protected abstract void Activate();
     protected void TriggerSkillCasted(Skill skill)
     {
         SkillCasted?.Invoke(skill);
