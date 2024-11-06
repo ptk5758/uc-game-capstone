@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6346742275527150432}
+  abangHitParticle: {fileID: 0}
 --- !u!1001 &7309381331562707116
 PrefabInstance:
   m_ObjectHideFlags: 0

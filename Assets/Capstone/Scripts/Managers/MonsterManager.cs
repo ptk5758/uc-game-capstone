@@ -65,6 +65,7 @@ public class MonsterManager : BaseManager
     public void SpawnMonster(MonsterSpawnData data, Transform location)
     {
         GameObject spawned = GameObject.Instantiate(data.monster.prefab);
+        spawned.name = "Monster " + alive.Count;
         Monster mob = spawned.GetComponent<Monster>();
         mob.SetData(data.monster);
         mob.SetTarget(PlayerManager.Player);

@@ -15,8 +15,12 @@ public class ABang : Skill
     protected override void Activate()
     {
         // Debug.Log("아방 스트랏슈");
-        foreach (Monster monster in new HashSet<Monster>(MonsterManager.alive)) {
-            monster.Hit(player.AttackDamage + skillDamage);            
+        foreach (Monster monster in new HashSet<Monster>(MonsterManager.alive)) {            
+            Debug.Log(monster);
+            // monster.abangHitParticle.Play();
+            // player.particleManager.abangEffect
+            GameObject obj = GameObject.Instantiate(player.particleManager.abangEffect, monster.transform);
+            monster.Hit(player.AttackDamage + skillDamage);
         }
     }
 }

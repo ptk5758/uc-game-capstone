@@ -13,12 +13,14 @@ public class Player : BasePlayer
     public Skill s3;
     public Skill s4;
     private float attackTimer = 0;
+    public ParticleManager particleManager;
     private void Awake()
     {
         s1 = new PointStrike(this);
         s2 = new AttackDelayBuff(this);
         s3 = new LevelUP(this);
         s4 = new ABang(this);
+        particleManager = FindObjectOfType<ParticleManager>();
     }
     [ContextMenu("Test_Skill")]
     public void Test_CastSkill()

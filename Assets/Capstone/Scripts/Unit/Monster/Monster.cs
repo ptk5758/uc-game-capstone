@@ -7,6 +7,7 @@ public class Monster : BaseMonster
 {
     [SerializeField]
     private Animator animator;
+    public ParticleSystem abangHitParticle;
     private void OnTriggerEnter(Collider collider)
     {
         if (target.GameObject == collider.gameObject) {
