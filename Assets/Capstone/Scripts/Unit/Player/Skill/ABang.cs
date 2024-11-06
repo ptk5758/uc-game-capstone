@@ -7,11 +7,16 @@ using UnityEngine;
 */
 public class ABang : Skill
 {
+    private float skillDamage;
     public ABang(Player p) : base(p) {
         coolTime = 5f;
+        skillDamage = 10;
     }
     protected override void Activate()
     {
-        Debug.Log("아방 스트랏슈");
+        // Debug.Log("아방 스트랏슈");
+        foreach (Monster monster in new HashSet<Monster>(MonsterManager.alive)) {
+            monster.Hit(player.AttackDamage + skillDamage);            
+        }
     }
 }
