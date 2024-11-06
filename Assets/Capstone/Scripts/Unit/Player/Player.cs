@@ -8,10 +8,10 @@ public class Player : BasePlayer
 {
     public static Action<int> hited;
     public Animator animator;
-    private Skill s1;
-    private Skill s2;
-    private Skill s3;
-    private Skill s4;
+    public Skill s1;
+    public Skill s2;
+    public Skill s3;
+    public Skill s4;
     private float attackTimer = 0;
     private void Awake()
     {

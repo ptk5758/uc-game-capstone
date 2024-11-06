@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using GameSystem;
+using Unity.VisualScripting;
 public class UIManager : BaseManager
 {
     [SerializeField]
@@ -16,10 +17,17 @@ public class UIManager : BaseManager
 
     [SerializeField]
     private TMP_Text playerHPText;
+
+    [SerializeField]
+    private SkillController skillController;
     private void OnEnable()
     {
         Player.hited += OnPlayerHited;
         GameManager.losed += OnLosed;
+    }
+    private void Start()
+    {
+        skillController.SetUp(PlayerManager.Player);
     }
     protected override void OnDisable()
     {
@@ -68,5 +76,22 @@ public class UIManager : BaseManager
     private void BattleActionHendler()
     {
         _UISystem.SetGameStatusToBattle();
+    }
+}
+
+[System.Serializable]
+public class SkillController
+{
+    public Button s1;
+    public Button s2;
+    public Button s3;
+    public Button s4;
+
+    public void SetUp(Player player)
+    {
+        s1.onClick.AddListener(player.s1.Cast);
+        s2.onClick.AddListener(player.s2.Cast);
+        s3.onClick.AddListener(player.s3.Cast);
+        s4.onClick.AddListener(player.s4.Cast);
     }
 }
