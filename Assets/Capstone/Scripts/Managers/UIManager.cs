@@ -16,7 +16,7 @@ public class UIManager : BaseManager
     private UISystem _UISystem;
 
     [SerializeField]
-    private TMP_Text playerHPText;
+    private ProgressBar healthBar;
 
     [SerializeField]
     private SkillController skillController;
@@ -37,7 +37,9 @@ public class UIManager : BaseManager
     }
     private void OnPlayerHited(int hp) 
     {
-        playerHPText.text = "HP : " + hp;
+        // playerHPText.text = "HP : " + hp;
+        healthBar.value = hp;
+        healthBar.Render();
     }
     private void OnLosed()
     {
@@ -52,13 +54,13 @@ public class UIManager : BaseManager
 
     protected override void OnReady()
     {
-        actionButtonText.text = "Battle!";
+        actionButtonText.text = "전투시작";
         actionButton.onClick.RemoveAllListeners();
         actionButton.onClick.AddListener(BattleActionHendler);
     }
     protected override void OnBattle()
     {
-        actionButtonText.text = "Battling!";
+        actionButtonText.text = "전투중";
         actionButton.onClick.RemoveAllListeners();
         actionButton.onClick.AddListener(()=>{
             Debug.Log("전투중 입니다...");
@@ -66,10 +68,11 @@ public class UIManager : BaseManager
     }
     protected override void OnMaintenance()
     {
-        actionButtonText.text = "Maintenance..";
+        actionButtonText.text = "정비";
         actionButton.onClick.RemoveAllListeners();
         actionButton.onClick.AddListener(()=>{
             // Debug.Log("전투중 입니다...");
+            _gameManager.SetGameStatus(GameStatus.Ready);
         });
     }
 

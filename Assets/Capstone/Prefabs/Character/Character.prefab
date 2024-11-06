@@ -988,8 +988,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <AttackDamage>k__BackingField: 10
-  <HP>k__BackingField: 10
+  <HP>k__BackingField: 100
   animator: {fileID: 9041792984612878076}
+  particleManager: {fileID: 0}
 --- !u!1 &3304023255540074774
 GameObject:
   m_ObjectHideFlags: 0
