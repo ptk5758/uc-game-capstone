@@ -8,7 +8,7 @@ public abstract class Skill
     public static event Action<Skill> SkillCasted;        
     protected Player player;
     public float coolTime;
-    private bool isSkillReady = true;
+    public bool isSkillReady = true;
     public Skill(Player player)
     {
         this.player = player;

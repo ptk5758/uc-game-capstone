@@ -8,10 +8,14 @@ using UnityEngine;
 public class AttackDelayBuff : Skill
 {
     public AttackDelayBuff(Player p) : base(p) {
-        coolTime = 5f;
+        coolTime = 8f;
     }
     protected override void Activate()
     {
+        player.AttackDelay -= 0.1f;
         Debug.Log("공속 증가");
+        MessgeManager messgeManager = GameObject.FindObjectOfType<MessgeManager>();
+        messgeManager.Notification("공격 속도가 증가 하였습니다.");
+        
     }
 }

@@ -17,8 +17,8 @@ public class Player : BasePlayer
     private void Awake()
     {
         s1 = new PointStrike(this);
-        s2 = new AttackDelayBuff(this);
-        s3 = new LevelUP(this);
+        s2 = new LevelUP(this);
+        s3 = new AttackDelayBuff(this);
         s4 = new ABang(this);
         particleManager = FindObjectOfType<ParticleManager>();
     }
