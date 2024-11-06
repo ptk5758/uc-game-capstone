@@ -8,11 +8,17 @@ public class Player : BasePlayer
 {
     public static Action<int> hited;
     public Animator animator;
-    public Skill s1;
+    private Skill s1;
+    private Skill s2;
+    private Skill s3;
+    private Skill s4;
     private float attackTimer = 0;
     private void Awake()
     {
-        s1 = new ABang(this);
+        s1 = new PointStrike(this);
+        s2 = new AttackDelayBuff(this);
+        s3 = new LevelUP(this);
+        s4 = new ABang(this);
     }
     [ContextMenu("Test_Skill")]
     public void Test_CastSkill()
