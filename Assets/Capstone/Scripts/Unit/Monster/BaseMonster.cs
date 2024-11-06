@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public abstract class BaseMonster : MonoBehaviour, IMonster
 {
+    [SerializeField]
+    protected Animator animator;
     public int Damage { get; set; }
     public float Speed { get; set; }
     public float Delay { get; set; }
@@ -32,6 +34,7 @@ public abstract class BaseMonster : MonoBehaviour, IMonster
             Attacking();
             return;
         }
+        animator.SetBool("IsAttack", false);
         Moving();
     }
     protected virtual void Attacking() {
@@ -45,6 +48,7 @@ public abstract class BaseMonster : MonoBehaviour, IMonster
     }
     private void AttackPlayer()
     {
+        animator.SetBool("IsAttack", true);
         PlayerManager.Player.Hit(Damage);
     }
     private void Moving()
